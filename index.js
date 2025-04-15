@@ -39,3 +39,16 @@ app.get("/webhook", (req, res) => {
     res.sendStatus(400);
   }
 });
+
+app.post("/webhook", (req, res) => {
+  const body = req.body;
+
+  console.log("🔔 Incoming webhook:", JSON.stringify(body, null, 2));
+
+  // Required by Meta to respond fast
+  if (body.object) {
+    res.sendStatus(200);
+  } else {
+    res.sendStatus(404);
+  }
+});
