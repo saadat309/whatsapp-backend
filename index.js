@@ -13,3 +13,10 @@ app.get("/", (req, res) => {
 app.listen(PORT, () => {
   console.log(`Server listening on port ${PORT}`);
 });
+
+app.get("/privacy", (req, res) => {
+  res.sendFile(__dirname + "/public/privacy.html");
+});
+app.get("/terms", (req, res) => {
+  res.sendFile(__dirname + "/public/terms.html");
+});
