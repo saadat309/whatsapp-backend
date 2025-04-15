@@ -42,20 +42,20 @@ app.get("/webhook", (req, res) => {
 
 app.post("/webhook", (req, res) => {
   try {
+    console.log("🟢 Webhook POST received");
+
     const body = req.body;
 
-    // Just log it safely
-    console.log("🔔 Incoming webhook:");
+    // Safe logging — avoids crashing even if undefined
     console.dir(body, { depth: null });
 
-    // Respond 200 if it looks like a valid webhook payload
     if (body && body.object === "whatsapp_business_account") {
       res.sendStatus(200);
     } else {
       res.sendStatus(404);
     }
-  } catch (err) {
-    console.error("❌ Error in webhook:", err);
+  } catch (error) {
+    console.error("❌ Error in webhook:", error.message);
     res.sendStatus(500);
   }
 });
