@@ -41,14 +41,21 @@ app.get("/webhook", (req, res) => {
 });
 
 app.post("/webhook", (req, res) => {
-  const body = req.body;
+  try {
+    const body = req.body;
 
-  console.log("🔔 Incoming webhook:", JSON.stringify(body, null, 2));
+    // Just log it safely
+    console.log("🔔 Incoming webhook:");
+    console.dir(body, { depth: null });
 
-  // Required by Meta to respond fast
-  if (body.object) {
-    res.sendStatus(200);
-  } else {
-    res.sendStatus(404);
+    // Respond 200 if it looks like a valid webhook payload
+    if (body && body.object === "whatsapp_business_account") {
+      res.sendStatus(200);
+    } else {
+      res.sendStatus(404);
+    }
+  } catch (err) {
+    console.error("❌ Error in webhook:", err);
+    res.sendStatus(500);
   }
 });
