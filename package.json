@@ -8,8 +8,18 @@
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "description": "",
   "dependencies": {
+    "axios": "^1.8.4",
+    "dotenv": "^16.5.0",
     "express": "^5.1.0"
-  }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/saadat309/whatsapp-backend.git"
+  },
+  "bugs": {
+    "url": "https://github.com/saadat309/whatsapp-backend/issues"
+  },
+  "homepage": "https://github.com/saadat309/whatsapp-backend#readme",
+  "description": ""
 }
